@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Casamento Ádria & Vinícius | 23.01.2027</title>
+  
+  <!-- SEO & Social Sharing -->
+  <meta name="description" content="Convite de Casamento de Ádria & Vinícius. 23 de Janeiro de 2027 em Fortaleza - CE. Toque para abrir.">
+  <meta property="og:title" content="Casamento Ádria & Vinícius | 23.01.2027">
+  <meta property="og:description" content="Você é nosso convidado especial! Toque para abrir o convite.">
+  <meta property="og:image" content="/assets/envelope-cover.png">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#F6F9FB">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/wax-seal.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+
+  <!-- Main App Container -->
+  <main class="invitation-app">
+    
+    <!-- SCREEN 1: ANIMAÇÃO DO ENVELOPE (FUNDO 100% DA TELA) -->
+    <section id="screen-envelope" class="screen-view active">
+      <div class="stage-frame">
+        <!-- Vídeo oficial com a animação real de abertura do envelope -->
+        <video 
+          id="envelope-video" 
+          class="stage-media" 
+          playsinline 
+          muted 
+          preload="auto"
+          poster="/assets/envelope-cover.png">
+          <source src="/assets/envelope-animation.mp4" type="video/mp4">
+        </video>
+
+        <!-- Overlay interativo: Toque para abrir -->
+        <div id="envelope-play-prompt" class="envelope-touch-overlay" title="Toque para abrir o convite">
+          <button id="btn-trigger-play" class="seal-touch-target" aria-label="Toque para abrir o convite">
+            <span class="seal-glow-pulse"></span>
+          </button>
+        </div>
+
+        <!-- Botão discreto para pular caso deseje -->
+        <button id="btn-skip-video" class="btn-skip-intro hidden" aria-label="Pular animação">
+          Pular ➔
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: PAINEL PRINCIPAL (SCRAPBOOK COM FUNDO 100% DA TELA) -->
+    <section id="screen-board" class="screen-view hidden">
+      <div class="stage-frame">
+        
+        <!-- Imagem do scrapbook na proporção perfeita, sem cortes laterais -->
+        <img src="/assets/scrapbook-board.png" alt="Convite de Casamento Ádria & Vinícius" class="stage-media board-img">
+
+        <!-- Hotspots sobre cada elemento do scrapbook (toque amplia a imagem correspondente) -->
+        <div class="hotspots-layer">
+          <!-- 1. Cartão da Igreja (Topo Esquerdo) -->
+          <button class="zoom-hotspot church-spot" data-zoom="/assets/church-card.png" aria-label="Ampliar Aquarela da Igreja"></button>
+
+          <!-- 2. Lista de Presentes / Renda (Topo Direito) -->
+          <button class="zoom-hotspot gift-spot" data-zoom="/assets/gift-list.png" aria-label="Ampliar Lista de Presentes"></button>
+
+          <!-- 3. Convite Formal Oficial (Centro) -->
+          <button class="zoom-hotspot invitation-spot" data-zoom="/assets/invitation-card.png" aria-label="Ampliar Convite Oficial"></button>
+
+          <!-- 4. Lacre de Cera com Flores (Centro-Direita) -->
+          <button class="zoom-hotspot wax-spot" data-zoom="/assets/wax-seal.png" aria-label="Ampliar Lacre de Cera"></button>
+
+          <!-- 5. Medalhão Oval com Tassel (Inferior Esquerdo) -->
+          <button class="zoom-hotspot tassel-spot" data-zoom="/assets/monogram-tassel.png" aria-label="Ampliar Medalhão com Tassel"></button>
+
+          <!-- 6. Botão Confirme sua Presença (Inferior Centro) -->
+          <button class="zoom-hotspot rsvp-spot" data-zoom="/assets/rsvp-badge.png" aria-label="Ampliar Confirme sua Presença"></button>
+
+          <!-- 7. Guardanapo Bordado com Versículo (Inferior Direito) -->
+          <button class="zoom-hotspot verse-spot" data-zoom="/assets/verse-napkin.png" aria-label="Ampliar Versículo"></button>
+        </div>
+
+      </div>
+
+      <!-- Botão Flutuante para rever o Envelope -->
+      <button id="btn-reopen" class="btn-replay-envelope" title="Ver abertura novamente" aria-label="Rever abertura do envelope">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        <span>Envelope</span>
+      </button>
+    </section>
+
+    <!-- =======================================================
+         LIGHTBOX: AMPLIAÇÃO PURA DA IMAGEM TOCADA
+         ======================================================= -->
+    <div id="image-lightbox" class="lightbox-overlay hidden" role="dialog" aria-modal="true">
+      <button id="lightbox-close" class="lightbox-close-btn" aria-label="Fechar ampliação">&times;</button>
+      <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="Imagem ampliada" class="lightbox-art">
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Scripts -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
