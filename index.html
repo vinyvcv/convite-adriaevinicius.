@@ -67,13 +67,13 @@
         <!-- Hotspots sobre cada elemento do scrapbook (toque amplia a imagem correspondente) -->
         <div class="hotspots-layer">
           <!-- 1. Cartão da Igreja (Topo Esquerdo) -->
-          <button class="zoom-hotspot church-spot" data-zoom="/assets/church-card.png" aria-label="Ampliar Aquarela da Igreja"></button>
+          <button class="zoom-hotspot church-spot" data-zoom="/assets/church-card.png" data-link="https://noivos.casar.com/adria-e-vinicius#/cerimonia" aria-label="Ampliar Aquarela da Igreja"></button>
 
           <!-- 2. Lista de Presentes / Renda (Topo Direito) -->
-          <button class="zoom-hotspot gift-spot" data-zoom="/assets/gift-list.png" aria-label="Ampliar Lista de Presentes"></button>
+          <button class="zoom-hotspot gift-spot" data-zoom="/assets/gift-list.png" data-link="https://noivos.casar.com/adria-e-vinicius#/presentes" aria-label="Ampliar Lista de Presentes"></button>
 
           <!-- 3. Convite Formal Oficial (Centro) -->
-          <button class="zoom-hotspot invitation-spot" data-zoom="/assets/invitation-card.png" aria-label="Ampliar Convite Oficial"></button>
+          <button class="zoom-hotspot invitation-spot" data-zoom="/assets/invitation-card.png" data-link="https://noivos.casar.com/adria-e-vinicius#/recepcao" aria-label="Ampliar Convite Oficial"></button>
 
           <!-- 4. Lacre de Cera com Flores (Centro-Direita) -->
           <button class="zoom-hotspot wax-spot" data-zoom="/assets/wax-seal.png" aria-label="Ampliar Lacre de Cera"></button>
@@ -82,10 +82,10 @@
           <button class="zoom-hotspot tassel-spot" data-zoom="/assets/monogram-tassel.png" aria-label="Ampliar Medalhão com Tassel"></button>
 
           <!-- 6. Botão Confirme sua Presença (Inferior Centro) -->
-          <button class="zoom-hotspot rsvp-spot" data-zoom="/assets/rsvp-badge.png" aria-label="Ampliar Confirme sua Presença"></button>
+          <button class="zoom-hotspot rsvp-spot" data-zoom="/assets/rsvp-badge.png" data-link="https://noivos.casar.com/adria-e-vinicius#/rsvp" aria-label="Ampliar Confirme sua Presença"></button>
 
           <!-- 7. Guardanapo Bordado com Versículo (Inferior Direito) -->
-          <button class="zoom-hotspot verse-spot" data-zoom="/assets/verse-napkin.png" aria-label="Ampliar Versículo"></button>
+          <button class="zoom-hotspot verse-spot" data-zoom="/assets/verse-napkin.png" data-link="https://noivos.casar.com/adria-e-vinicius#/o-casal" aria-label="Ampliar Versículo"></button>
         </div>
 
       </div>
@@ -110,6 +110,11 @@
     </div>
 
   </main>
+
+  <!-- Música de Fundo Oculta -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="/assets/background-music.mp3" type="audio/mpeg">
+  </audio>
 
   <!-- Scripts -->
   <script type="module" src="/src/main.js"></script>

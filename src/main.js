@@ -20,7 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxClose = document.getElementById('lightbox-close');
   const zoomHotspots = document.querySelectorAll('.zoom-hotspot');
 
+  // Background Music
+  const bgMusic = document.getElementById('bg-music');
+
   let hasTransitioned = false;
+  let currentImageLink = null;
 
   // ==========================================
   // TRANSIÇÃO PARA O SCRAPBOOK (TELA PRINCIPAL)
@@ -51,6 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Exibe botão de pular caso o convidado queira ir direto
     if (btnSkipVideo) {
       btnSkipVideo.classList.remove('hidden');
+    }
+
+    // Inicia a música de fundo suavemente
+    if (bgMusic) {
+      bgMusic.volume = 0.5;
+      bgMusic.play().catch((err) => console.warn('Autoplay audio bloqueado:', err));
     }
 
     envelopeVideo.currentTime = 0;
@@ -119,6 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
         btnSkipVideo.classList.add('hidden');
       }
 
+      // Reinicia a música (opcional, mas como toca em loop, mantemos)
+      if (bgMusic && bgMusic.paused) {
+        bgMusic.play().catch(() => {});
+      }
+
       screenEnvelope.classList.remove('hidden');
       void screenEnvelope.offsetWidth;
       screenEnvelope.classList.add('active');
@@ -126,12 +141,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // LIGHTBOX: AMPLIAÇÃO PURA DA IMAGEM TOCADA
+  // LIGHTBOX: AMPLIAÇÃO E REDIRECIONAMENTO
   // ==========================================
-  function openZoom(imageSrc, altText = '') {
+  function openZoom(imageSrc, altText = '', linkUrl = null) {
     if (!imageSrc) return;
     lightboxImg.src = imageSrc;
     lightboxImg.alt = altText || 'Imagem do convite ampliada';
+    currentImageLink = linkUrl;
 
     imageLightbox.classList.remove('hidden');
     void imageLightbox.offsetWidth;
@@ -154,7 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       const zoomSrc = spot.getAttribute('data-zoom');
       const label = spot.getAttribute('aria-label');
-      openZoom(zoomSrc, label);
+      const linkUrl = spot.getAttribute('data-link');
+      openZoom(zoomSrc, label, linkUrl);
     });
   });
 
@@ -165,8 +182,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Clicar fora ou na própria imagem fecha a ampliação
-  imageLightbox.addEventListener('click', closeLightbox);
+  // Clicar fora ou na própria imagem fecha a ampliação (ou abre o link)
+  imageLightbox.addEventListener('click', (e) => {
+    // Se o clique foi exatamente na imagem ampliada e ela tiver um link
+    if (e.target === lightboxImg && currentImageLink) {
+      window.open(currentImageLink, '_blank'); // Abre em nova aba
+    } else {
+      // Se clicou no fundo escuro ou numa imagem sem link
+      closeLightbox();
+    }
+  });
 
   // Tecla ESC fecha a ampliação
   window.addEventListener('keydown', (e) => {
