@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Background Music
   const bgMusic = document.getElementById('bg-music');
+  const btnAudioToggle = document.getElementById('btn-audio-toggle');
+  const iconAudioOn = document.getElementById('icon-audio-on');
+  const iconAudioOff = document.getElementById('icon-audio-off');
 
   let hasTransitioned = false;
   let currentImageLink = null;
@@ -137,6 +140,24 @@ document.addEventListener('DOMContentLoaded', () => {
       screenEnvelope.classList.remove('hidden');
       void screenEnvelope.offsetWidth;
       screenEnvelope.classList.add('active');
+    });
+  }
+
+  // ==========================================
+  // TOGGLE DE ÁUDIO (MÚSICA DE FUNDO)
+  // ==========================================
+  if (btnAudioToggle && bgMusic) {
+    btnAudioToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (bgMusic.paused) {
+        bgMusic.play();
+        iconAudioOn.classList.remove('hidden');
+        iconAudioOff.classList.add('hidden');
+      } else {
+        bgMusic.pause();
+        iconAudioOn.classList.add('hidden');
+        iconAudioOff.classList.remove('hidden');
+      }
     });
   }
 

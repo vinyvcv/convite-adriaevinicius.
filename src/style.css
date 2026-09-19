@@ -296,6 +296,35 @@ html, body {
   box-shadow: 0 8px 24px rgba(42, 51, 32, 0.18);
 }
 
+/* BOTÃO FLUTUANTE DE ÁUDIO (FIXADO NO CANTO INFERIOR DIREITO) */
+.btn-audio-control {
+  position: fixed;
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(83, 92, 67, 0.22);
+  color: var(--color-olive-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(42, 51, 32, 0.12);
+  transition: var(--transition-smooth);
+  z-index: 50;
+}
+
+.btn-audio-control:hover {
+  background: #FFFFFF;
+  color: var(--color-olive-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(42, 51, 32, 0.18);
+}
+
 /* ==========================================================================
    LIGHTBOX: AMPLIAÇÃO PURA DA IMAGEM TOCADA
    ========================================================================== */
