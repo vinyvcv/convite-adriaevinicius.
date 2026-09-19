@@ -125,33 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   if (btnReopen) {
     btnReopen.addEventListener('click', () => {
-      closeLightbox();
-      hasTransitioned = false;
-
-      screenBoard.classList.remove('active');
-      screenBoard.classList.add('hidden');
-
-      if (envelopeVideo) {
-        envelopeVideo.pause();
-        envelopeVideo.currentTime = 0;
-      }
-
-      if (envelopePlayPrompt) {
-        envelopePlayPrompt.classList.remove('hidden');
-      }
-
-      if (btnSkipVideo) {
-        btnSkipVideo.classList.add('hidden');
-      }
-
-      // Reinicia a música (opcional, mas como toca em loop, mantemos)
-      if (bgMusic && bgMusic.paused) {
-        bgMusic.play().catch(() => {});
-      }
-
-      screenEnvelope.classList.remove('hidden');
-      void screenEnvelope.offsetWidth;
-      screenEnvelope.classList.add('active');
+      // Limpa a memória de sessão e recarrega a página para voltar ao "início de tudo" (Tela 1 pura)
+      sessionStorage.removeItem('envelopeSeen');
+      window.location.reload();
     });
   }
 
