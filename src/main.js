@@ -29,6 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
   let hasTransitioned = false;
   let currentImageLink = null;
 
+  // Se já viu o envelope nesta sessão (ex: voltou pelo botão do navegador), vai direto pro Scrapbook
+  if (sessionStorage.getItem('envelopeSeen') === 'true') {
+    screenEnvelope.classList.remove('active');
+    screenEnvelope.classList.add('hidden');
+    screenBoard.classList.remove('hidden');
+    screenBoard.classList.add('active');
+    hasTransitioned = true;
+  }
+
   // ==========================================
   // TRANSIÇÃO PARA O SCRAPBOOK (TELA PRINCIPAL)
   // ==========================================
@@ -42,6 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
     screenBoard.classList.remove('hidden');
     void screenBoard.offsetWidth; // Reflow para animação suave
     screenBoard.classList.add('active');
+
+    // Marca que já assistiu
+    sessionStorage.setItem('envelopeSeen', 'true');
   }
 
   // ==========================================
